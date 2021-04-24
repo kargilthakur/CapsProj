@@ -24,7 +24,7 @@ pinpage = Window(mainpage, title="ATM pin screen", width=600, height=600, visibl
 pinpage.bg = 246, 185, 72
 txt4 = Text(pinpage, "Please enter your ATM pin:", size=20)
 txt5 = Text(pinpage, "Blind mode on", align="bottom", size=10)
-textbox1 = TextBox(pinpage, text="", hide_text=True)
+textbox1 = TextBox(pinpage, text="")
 
 
 # Gui for snooping alert
@@ -79,7 +79,6 @@ txt7 = Text(optionpage, "Blind mode on", align="bottom", size=10)
 choice = ButtonGroup(optionpage, options=["1.Cash Withdrawal", "2.Cash Deposit", "3.Change PIN", "4.Balance Enquiry"])
 choice.text_size = 24
 choice.text_color = "black"
-choice.align = "top"
 push2 = PushButton(optionpage, command=selected_option, text="continue")
 
 # UI for exit button
