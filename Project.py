@@ -1,5 +1,5 @@
 from guizero import App, Text, PushButton, Window, TextBox, ButtonGroup
-# Interface for first screen
+from tts import welcome,enter_pin,incorrect_pin,Options,canform,middle
 
 def exitmachine():
     mainpage.destroy()
@@ -11,13 +11,17 @@ txt2 = Text(mainpage, "\n\n\nPlease enter card to begin transaction\n\n\n", size
 txt3 = Text(mainpage, "Blind mode on", align="bottom", size=10)
 exitm = PushButton(mainpage, command=exitmachine, text="Stop Machine", align="bottom")
 
+mainpage.after(500,welcome)
+
 def card_detected():
 
     mainpage.hide()
     pinpage.show()
+    mainpage.after(500,enter_pin)
+
 
 # after command is used to automatically call a command after a specified time
-mainpage.after(3000, card_detected)
+mainpage.after(5000, card_detected)
 
 # Second screen interface
 pinpage = Window(mainpage, title="ATM pin screen", width=600, height=600, visible=False)
@@ -49,9 +53,12 @@ def check_pin():
     if textbox1.value == "1234":
         pinpage.destroy()
         optionpage.show()
+        optionpage.after(500,Options)
     else:
-        pinpage.info("Incorrect pin", "Please enter correct pin")
+        # pinpage.info("Incorrect pin", "Please enter correct pin")
         textbox1.clear()
+        pinpage.after(0,incorrect_pin)
+
 
 pinpage.after(6000, check_camera)
 push1 = PushButton(pinpage, command=check_pin, text="Enter")
@@ -61,15 +68,19 @@ def selected_option():
     if choice.value == "1.Cash Withdrawal":
         optionpage.destroy()
         op1.show()
+        op1.after(200,middle(1))
     elif choice.value == "2.Cash Deposit":
         optionpage.destroy()
         op2.show()
+        op2.after(200,middle(2)) 
     elif choice.value == "3.Change PIN":
         optionpage.destroy()
         op3.show()
+        op3.after(200,middle(3))
     elif choice.value == "4.Balance Enquiry":
         optionpage.destroy()
         op4.show()
+        op4.after(200,middle(4))
 
 # Options page interface
 optionpage = Window(mainpage, title="ATM options", width=600, height=600, visible=False)
@@ -104,21 +115,25 @@ def exitall(a):
 def confirm(x):
 
     if x == "1":
+        op1.after(100,canform(int(x)))
         op1.info("transaction successful", "Please collect money from dispenser")
         op1.hide()
         startprog()
 
     elif x == "2":
+        op2.after(100,canform(int(x)))
         op2.info("transaction successful", "Your money is deposited")
         op2.hide()
         startprog()
 
     elif x == "3":
+        op3.after(100,canform(int(x)))
         op3.info("transaction successful", "Your PIN is changed")
         op3.hide()
         startprog()
 
     elif x == "4":
+        op4.after(100,canform(int(x)))
         op4.info("transaction successful", "Please collect enquiry receipt")
         op4.hide()
         startprog()
