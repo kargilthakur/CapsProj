@@ -27,7 +27,7 @@ def Options():
     engine.say("say three for changing pin")
     engine.say("Say four for Balance Enquiry")
     engine.runAndWait()
-    beep(sound=4)
+    beep(sound=1)
 
 def canform(a):
     a = a-1 
