@@ -14,3 +14,5 @@ Speech Recog-https://www.raspberrypi.org/blog/talk-to-your-raspberry-pi-hackspac
 Mic testing - https://www.rhydolabz.com/wiki/?p=16234
 
 pyaudio - https://stackoverflow.com/questions/65709212/import-pyaudio-doesnt-work-symbol-not-found-pamaccore-setupchannelmap-on-ma
+
+speech pc ver - https://realpython.com/python-speech-recognition/#:~:text=Open%20up%20another%20interpreter%20session,instance%20of%20the%20recognizer%20class.&text=Now%2C%20instead%20of%20using%20an,instance%20of%20the%20Microphone%20class.
