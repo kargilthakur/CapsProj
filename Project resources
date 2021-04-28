@@ -12,3 +12,5 @@ Using microphone in raspberry pi - https://pimylifeup.com/raspberrypi-microphone
 Speech Recog-https://www.raspberrypi.org/blog/talk-to-your-raspberry-pi-hackspace-36/
 
 Mic testing - https://www.rhydolabz.com/wiki/?p=16234
+
+pyaudio - https://stackoverflow.com/questions/65709212/import-pyaudio-doesnt-work-symbol-not-found-pamaccore-setupchannelmap-on-ma
