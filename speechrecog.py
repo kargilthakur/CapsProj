@@ -5,7 +5,7 @@ import speech_recognition as sr
 import pyttsx3
 engine = pyttsx3.init()
 print(sr.__version__)
-audio_file = sr.AudioFile("record.wav")
+audio_file = sr.AudioFile("audiosamples/12000amount.wav")
 r = sr.Recognizer()
 with audio_file as source:
     audio = r.record(source)
