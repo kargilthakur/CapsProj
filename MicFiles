@@ -1,0 +1,40 @@
+https://pimylifeup.com/raspberrypi-microphone/
+
+**** List of CAPTURE Hardware Devices ****
+card 1: Device [USB Audio Device], device 0: USB Audio [USB Audio]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+pcm.!default {
+  type asym
+  capture.pcm "mic"
+}
+
+pcm.!default {
+        type asym
+        playback.pcm {
+                type plug
+                slave.pcm "output"
+        }
+        capture.pcm "mic"
+}
+
+pcm.output {
+        type hw
+        card 1
+}
+pcm.input {
+        type hw
+        card 1
+}
+pcm.mic {
+    type plug
+    slave {
+              pcm "hw:1,0"
+    }
+}
+
+
+ctl.!default {
+        type hw
+        card 1
+}
