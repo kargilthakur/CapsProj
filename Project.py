@@ -157,7 +157,7 @@ optionpage = Window(mainpage, title="ATM options", width=600, height=600, visibl
 optionpage.bg = 246, 185, 72
 txt6 = Text(optionpage, "Choose from the following options:", size=24)
 txt7 = Text(optionpage, "Blind mode ON", align="bottom", size=10)
-txt69 = Text(optionpage,"1",align="right",size=10)
+txt69 = Text(optionpage,"1",align="right",size=10,visible=False)
 choice = ButtonGroup(optionpage, options=["1.Cash Withdrawal", "2.Cash Deposit", "3.Change PIN", "4.Balance Enquiry"])
 choice.text_size = 24
 choice.text_color = "black"
@@ -172,7 +172,7 @@ txt12 = Text(op1, "Please enter the amount to be withdrawn", size=20)
 textbox2 = TextBox(op1)
 confirm1 = PushButton(op1, text="Confirm", command=confirm, args="1")
 txt8 = Text(op1, "Blind mode on", align="bottom", size=10)
-txt99 = Text(op1,"1",align="right",size=10)
+txt99 = Text(op1,"1",align="right",size=10,visible=False)
 exitbutton1 = PushButton(op1, text="Cancel transaction", command=exitall, args="1", align="bottom")
 txt99.repeat(1000,counter1)
 
