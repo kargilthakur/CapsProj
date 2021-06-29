@@ -1,5 +1,6 @@
 import pyttsx3
 from beepy import beep  # pip install beepy
+# import time
 engine = pyttsx3.init()
 # engine.setProperty('voice', 'english_rp+f4')
 # voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
@@ -21,6 +22,7 @@ def incorrect_pin():
     engine.runAndWait()
 
 def Options():
+    # begin = time.time()
     engine.say("say the option number after hearing beep")
     engine.say("say one for cash withdrawal")
     engine.say("say two for cash deposit")
@@ -28,6 +30,8 @@ def Options():
     engine.say("Say four for Balance Enquiry")
     engine.runAndWait()
     beep(sound=1)
+    # end = time.time()
+    # print(end - begin)
 
 def canform(a):
     a = a-1 
@@ -39,4 +43,8 @@ def middle(k):
     k = k-1
     gg = [" please enter the amount to be withdrawn","place the cash in the deposit machine","Enter the new Pin","Your current balance is"]
     engine.say(gg[k])
+    engine.runAndWait()
+
+def corroption():
+    engine.say("Please say the correct option")
     engine.runAndWait()
