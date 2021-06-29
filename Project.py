@@ -1,43 +1,27 @@
+from tkinter.constants import BOTTOM
 from guizero import App, Text, PushButton, Window, TextBox, ButtonGroup
 from tts import welcome,enter_pin,incorrect_pin,Options,canform,middle
+from speechdetect import listening
+import time
+def  secret():
+    global chocolate
+    chocolate = listening()
+    if chocolate == "1" or   chocolate =="3":
+        selected_option()
 
 def exitmachine():
     mainpage.destroy()
 
-mainpage = App("Bank of India ATM", width=600, height=600)
-mainpage.bg = 246, 185, 72
-txt1 = Text(mainpage, "Welcome to Bank of India ATM", size=32, font="Open sans", align="top")
-txt2 = Text(mainpage, "\n\n\nPlease enter card to begin transaction\n\n\n", size=20)
-txt3 = Text(mainpage, "Blind mode on", align="bottom", size=10)
-exitm = PushButton(mainpage, command=exitmachine, text="Stop Machine", align="bottom")
-
-mainpage.after(500,welcome)
-
 def card_detected():
-
     mainpage.hide()
     pinpage.show()
     mainpage.after(500,enter_pin)
-
-
-# after command is used to automatically call a command after a specified time
-mainpage.after(5000, card_detected)
-
-# Second screen interface
-pinpage = Window(mainpage, title="ATM pin screen", width=600, height=600, visible=False)
-pinpage.bg = 246, 185, 72
-txt4 = Text(pinpage, "Please enter your ATM pin:", size=20)
-txt5 = Text(pinpage, "Blind mode on", align="bottom", size=10)
-textbox1 = TextBox(pinpage, text="")
-
 
 # Gui for snooping alert
 def startprog():
     mainpage.after(3000, card_detected)
     mainpage.show()
 
-
-snooping = True
 def check_camera():
     if pinpage.enabled:
         if snooping:
@@ -54,43 +38,30 @@ def check_pin():
         pinpage.destroy()
         optionpage.show()
         optionpage.after(500,Options)
+        optionpage.after(15000,secret)
     else:
         # pinpage.info("Incorrect pin", "Please enter correct pin")
         textbox1.clear()
         pinpage.after(0,incorrect_pin)
 
-
-pinpage.after(6000, check_camera)
-push1 = PushButton(pinpage, command=check_pin, text="Enter")
-
 # Selected transaction
 def selected_option():
-    if choice.value == "1.Cash Withdrawal":
+    if chocolate == "1":
         optionpage.destroy()
         op1.show()
         op1.after(200,middle(1))
-    elif choice.value == "2.Cash Deposit":
+    elif chocolate == "2":
         optionpage.destroy()
         op2.show()
         op2.after(200,middle(2)) 
-    elif choice.value == "3.Change PIN":
+    elif chocolate == "3":
         optionpage.destroy()
         op3.show()
         op3.after(200,middle(3))
-    elif choice.value == "4.Balance Enquiry":
+    elif chocolate == "4":
         optionpage.destroy()
         op4.show()
         op4.after(200,middle(4))
-
-# Options page interface
-optionpage = Window(mainpage, title="ATM options", width=600, height=600, visible=False)
-optionpage.bg = 246, 185, 72
-txt6 = Text(optionpage, "Choose from the following options:", size=24)
-txt7 = Text(optionpage, "Blind mode on", align="bottom", size=10)
-choice = ButtonGroup(optionpage, options=["1.Cash Withdrawal", "2.Cash Deposit", "3.Change PIN", "4.Balance Enquiry"])
-choice.text_size = 24
-choice.text_color = "black"
-push2 = PushButton(optionpage, command=selected_option, text="continue")
 
 # UI for exit button
 def exitall(a):
@@ -137,6 +108,49 @@ def confirm(x):
         op4.info("transaction successful", "Please collect enquiry receipt")
         op4.hide()
         startprog()
+
+def counter():
+    txt69.value = int(txt69.value) + 1
+
+
+
+mainpage = App("Bank of India ATM", width=600, height=600)
+mainpage.bg = 246, 185, 72
+txt1 = Text(mainpage, "Welcome to Bank of India ATM", size=32, font="Open sans", align="top")
+txt2 = Text(mainpage, "\n\n\nPlease enter card to begin transaction\n\n\n", size=20)
+txt3 = Text(mainpage, "Blind mode on", align="bottom", size=10)
+exitm = PushButton(mainpage, command=exitmachine, text="Stop Machine", align="bottom")
+
+mainpage.after(500,welcome)
+
+# after command is used to automatically call a command after a specified time
+mainpage.after(5000, card_detected)
+
+# Second screen interface
+pinpage = Window(mainpage, title="ATM pin screen", width=600, height=600, visible=False)
+pinpage.bg = 246, 185, 72
+txt4 = Text(pinpage, "Please enter your ATM pin:", size=20)
+txt5 = Text(pinpage, "Blind mode on", align="bottom", size=10)
+textbox1 = TextBox(pinpage, text="")
+
+snooping = True
+pinpage.after(6000, check_camera)
+push1 = PushButton(pinpage, command=check_pin, text="Enter")
+
+
+# Options page interface
+optionpage = Window(mainpage, title="ATM options", width=600, height=600, visible=False)
+optionpage.bg = 246, 185, 72
+txt6 = Text(optionpage, "Choose from the following options:", size=24)
+txt7 = Text(optionpage, "Blind mode ON", align="bottom", size=10)
+txt69 = Text(optionpage,"1",align="right",size=10)
+choice = ButtonGroup(optionpage, options=["1.Cash Withdrawal", "2.Cash Deposit", "3.Change PIN", "4.Balance Enquiry"])
+choice.text_size = 24
+choice.text_color = "black"
+push2 = PushButton(optionpage, command=selected_option, text="continue")
+txt69.repeat(1000, counter)
+
+
 
 # UI for option 1
 op1 = Window(mainpage, "Cash Withdrawal", width=600, height=600, bg=(246, 185, 72), visible=False)
