@@ -41,7 +41,7 @@ def canform(a):
 
 def middle(k):
     k = k-1
-    gg = [" please enter the amount to be withdrawn","place the cash in the deposit machine","Enter the new Pin","Your current balance is"]
+    gg = [" please enter the amount. Amount should be a multiple of 100","place the cash in the deposit machine","Enter the new Pin","Your current balance is"]
     engine.say(gg[k])
     engine.runAndWait()
 
@@ -49,3 +49,20 @@ def corroption():
     engine.say("Please say the correct option")
     engine.runAndWait()
 
+def notestts(k,v):
+    stringa = "{} notes of {}".format(v,k)
+    engine.say(stringa)
+    engine.runAndWait()
+
+def cantBdispense():
+    engine.say("Enter a valid amount")
+    engine.runAndWait()
+
+def aur():
+    engine.say("and")
+    engine.runAndWait()
+
+def ultimate(total):
+    stringa = "Total {} Notes are dispensed".format(total)
+    engine.say(stringa)
+    engine.runAndWait()
