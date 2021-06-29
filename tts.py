@@ -1,6 +1,6 @@
 import pyttsx3
 from beepy import beep  # pip install beepy
-# import time
+import time
 engine = pyttsx3.init()
 # engine.setProperty('voice', 'english_rp+f4')
 # voice_id = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0"
@@ -40,10 +40,14 @@ def canform(a):
     engine.runAndWait()
 
 def middle(k):
+    # begin = time.time()
     k = k-1
-    gg = [" please enter the amount. Amount should be a multiple of 100","place the cash in the deposit machine","Enter the new Pin","Your current balance is"]
+    gg = [" please say the amount to be withdrawn after the beep. Amount should be a multiple of 100","place the cash in the deposit machine","Enter the new Pin","Your current balance is"]
     engine.say(gg[k])
     engine.runAndWait()
+    beep(sound=1)
+    # end = time.time()
+    # print(end-begin)
 
 def corroption():
     engine.say("Please say the correct option")

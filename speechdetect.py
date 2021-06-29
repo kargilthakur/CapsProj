@@ -26,3 +26,21 @@ def listening():
             print("Could not request results from Google Speech Recognition service; {0}".format(e))        
             
     return txt
+
+def mounty():
+    txt = "gg"
+    while not txt.isnumeric():
+        try:
+            with mic as source:
+                r.adjust_for_ambient_noise(source)  
+                audio = r.listen(source,phrase_time_limit=2)
+                txt = r.recognize_google(audio,language="en-IN")
+                
+        except sr.WaitTimeoutError as e:
+            print("Timeout; {0}".format(e))
+        except sr.UnknownValueError:
+            print("Google Speech Recognition could not understand audio")
+        except sr.RequestError as e:
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))        
+            
+    return txt

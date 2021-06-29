@@ -1,11 +1,23 @@
 
 from guizero import App, Text, PushButton, Window, TextBox, ButtonGroup
 from tts import welcome,enter_pin,incorrect_pin,Options,canform,middle
-from speechdetect import listening
+from speechdetect import listening,mounty
 from NotesDispensed import nota
+import time
 def  secret():
     chocolate = listening()
     selected_option(chocolate)
+
+def secret2():
+    global cake
+    cake = mounty()
+    textbox2.value = cake
+    confirm("1")
+
+def secret3():
+    nota(int(cake))
+    op1.hide()
+    startprog()
 
 def exitmachine():
     mainpage.destroy()
@@ -49,6 +61,7 @@ def selected_option(chocolate):
         optionpage.destroy()
         op1.show()
         op1.after(200,middle(1))
+        op1.after(800,secret2)
     elif chocolate == "deposit":
         optionpage.destroy()
         op2.show()
@@ -85,10 +98,9 @@ def exitall(a):
 def confirm(x):
 
     if x == "1":
-        op1.after(100,nota(int(textbox2.value)))
-        op1.info("transaction successful", "Please collect money from dispenser")
-        op1.hide()
-        startprog()
+        op1.after(100,secret3)
+        # op1.info("transaction successful", "Please collect money from dispenser")
+       
 
     elif x == "2":
         op2.after(100,canform(int(x)))
@@ -110,6 +122,9 @@ def confirm(x):
 
 def counter():
     txt69.value = int(txt69.value) + 1
+
+def counter1():
+    txt99.value = int(txt99.value) + 1
 
 
 
@@ -157,8 +172,9 @@ txt12 = Text(op1, "Please enter the amount to be withdrawn", size=20)
 textbox2 = TextBox(op1)
 confirm1 = PushButton(op1, text="Confirm", command=confirm, args="1")
 txt8 = Text(op1, "Blind mode on", align="bottom", size=10)
+txt99 = Text(op1,"1",align="right",size=10)
 exitbutton1 = PushButton(op1, text="Cancel transaction", command=exitall, args="1", align="bottom")
-
+txt99.repeat(1000,counter1)
 
 # UI for option 2
 op2 = Window(mainpage, "Cash Deposit", width=600, height=600, bg=(246, 185, 72), visible=False)
