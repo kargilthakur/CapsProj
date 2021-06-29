@@ -2,7 +2,7 @@
 from guizero import App, Text, PushButton, Window, TextBox, ButtonGroup
 from tts import welcome,enter_pin,incorrect_pin,Options,canform,middle
 from speechdetect import listening
-
+from NotesDispensed import nota
 def  secret():
     chocolate = listening()
     selected_option(chocolate)
@@ -32,15 +32,16 @@ def check_camera():
 # Function for checking the ATM pin
 def check_pin():
     # To be checked using the database
-    if textbox1.value == "1234":
-        pinpage.destroy()
-        optionpage.show()
-        optionpage.after(500,Options)
-        optionpage.after(14000,secret)
-    else:
-        # pinpage.info("Incorrect pin", "Please enter correct pin")
-        textbox1.clear()
-        pinpage.after(0,incorrect_pin)
+    if len(textbox1.value) == 4:
+        if textbox1.value == "1234":
+            pinpage.destroy()
+            optionpage.show()
+            optionpage.after(500,Options)
+            optionpage.after(14000,secret)
+        else:
+            # pinpage.info("Incorrect pin", "Please enter correct pin")
+            textbox1.clear()
+            pinpage.after(0,incorrect_pin)
 
 # Selected transaction
 def selected_option(chocolate):
@@ -84,7 +85,7 @@ def exitall(a):
 def confirm(x):
 
     if x == "1":
-        op1.after(100,canform(int(x)))
+        op1.after(100,nota(int(textbox2.value)))
         op1.info("transaction successful", "Please collect money from dispenser")
         op1.hide()
         startprog()
@@ -129,11 +130,11 @@ pinpage = Window(mainpage, title="ATM pin screen", width=600, height=600, visibl
 pinpage.bg = 246, 185, 72
 txt4 = Text(pinpage, "Please enter your ATM pin:", size=20)
 txt5 = Text(pinpage, "Blind mode on", align="bottom", size=10)
-textbox1 = TextBox(pinpage, text="")
+textbox1 = TextBox(pinpage, text="",command=check_pin)
 
 snooping = True
 pinpage.after(6000, check_camera)
-push1 = PushButton(pinpage, command=check_pin, text="Enter")
+# push1 = PushButton(pinpage, command=check_pin, text="Enter")
 
 
 # Options page interface
@@ -190,3 +191,6 @@ exitbutton4 = PushButton(op4, text="Cancel transaction", command=exitall, args="
 
 # Start for program
 mainpage.display()
+
+
+
