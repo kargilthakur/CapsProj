@@ -1,6 +1,7 @@
 
+from tkinter.constants import N
 import speech_recognition as sr
-from tts import corroption
+from tts import sayagain,NoInternet
 r = sr.Recognizer()
 mic = sr.Microphone()
 r.dynamic_energy_threshold= False
@@ -19,11 +20,11 @@ def listening():
                 txt = r.recognize_google(audio,language="en-IN")
                 
         except sr.WaitTimeoutError as e:
-            print("Timeout; {0}".format(e))
+            sayagain()
         except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand audio")
+            sayagain()
         except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))        
+            NoInternet()      
             
     return txt
 
@@ -37,10 +38,10 @@ def mounty():
                 txt = r.recognize_google(audio,language="en-IN")
                 
         except sr.WaitTimeoutError as e:
-            print("Timeout; {0}".format(e))
+            sayagain()
         except sr.UnknownValueError:
-            print("Google Speech Recognition could not understand audio")
+            sayagain()
         except sr.RequestError as e:
-            print("Could not request results from Google Speech Recognition service; {0}".format(e))        
+            NoInternet()       
             
     return txt

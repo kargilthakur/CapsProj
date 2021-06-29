@@ -70,3 +70,12 @@ def ultimate(total):
     stringa = "Total {} Notes are dispensed".format(total)
     engine.say(stringa)
     engine.runAndWait()
+
+def sayagain():
+    engine.say("Please say the option again after beep")
+    engine.runAndWait()
+    beep(sound=1)
+
+def NoInternet():
+    engine.say("No internet connection try after some time")
+    engine.runAndWait()

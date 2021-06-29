@@ -12,9 +12,10 @@ def nota(i):
   if i >= 200:
     splitup[200] = int(i//200)
     i = i - splitup[200]*200
-  if i % 100 == 0 and i != 0:
-    splitup[100] = int(i/100)
-  else:
+  if i >= 100:
+    splitup[100] = int(i//100)
+    i = i - splitup[100]*100
+  if i != 0:
     cantBdispense()
     return None
   for key,value in splitup.items():
