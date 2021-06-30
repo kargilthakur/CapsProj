@@ -79,3 +79,8 @@ def sayagain():
 def NoInternet():
     engine.say("No internet connection try after some time")
     engine.runAndWait()
+
+def snooping():
+    engine.say("Someone is near you, ask the person to keep some distance  and try again")
+    engine.runAndWait()
+
