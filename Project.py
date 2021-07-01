@@ -4,7 +4,7 @@ from tts import snooping, welcome,enter_pin,incorrect_pin,Options,canform,middle
 from speechdetect import listening,mounty
 from NotesDispensed import nota
 import threading
-from Distancedemo import over,vision,snopdogg
+from Distancedemo import over,vision,snoop
 
 def GUI():
     def  secret():
@@ -36,11 +36,13 @@ def GUI():
         mainpage.show()
 
     def check_camera():
-        if pinpage.enabled:
-            if snopdogg:
+        #changes here
+        while pinpage.enabled:
+            if snoop():
+                print('inside snopdogg')
                 pinpage.after(100,snooping)
-                pinpage.destroy()
-                startprog()
+                #pinpage.destroy()
+                #startprog()
 
     # Function for checking the ATM pin
     def check_pin():

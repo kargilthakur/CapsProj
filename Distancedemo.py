@@ -2,16 +2,17 @@ import cv2
 import numpy as np
 import os
 import math as m
-pinover = False
-snopdogg = False
 #os.remove('demo.jpg')
 #os.remove('demo1.jpg')
+pinover=False
+snopdogg=False
+
 try:
     os.remove('output.avi')
 except:
     pass
-cv2.startWindowThread()
-url = 'http://192.168.207.152:8080/video'
+#cv2.startWindowThread()
+url = 'http://192.168.0.8:8080/video'
 
 cap = cv2.VideoCapture(url)
 hog = cv2.HOGDescriptor()
@@ -23,8 +24,7 @@ out = cv2.VideoWriter(
     15.,
     (640,480))
 def vision():
-    global pinover,snopdogg
-    while(cap.isOpened()):    
+    while(cap.isOpened()):
         ret, frame = cap.read()
         if ret == False or pinover == True:
             break
@@ -51,7 +51,9 @@ def vision():
             b=l1[1]
             dist=m.pow(m.pow(a[0]-b[0],2)+m.pow(a[1]-b[1],2),(1/2))#Distance formula
             # print("the distance between two objects is",dist)
+            global snopdogg
             snopdogg = True
+            
 
         #print(l1)
         
@@ -66,6 +68,9 @@ def vision():
     out.release()
     cv2.destroyAllWindows()
     cv2.waitKey(1)
+    
+def snoop():
+    return snopdogg
 
 def over():
     global pinover
