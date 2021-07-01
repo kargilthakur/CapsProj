@@ -1,10 +1,9 @@
-
 from guizero import App, Text, PushButton, Window, TextBox, ButtonGroup
 from tts import snooping, welcome,enter_pin,incorrect_pin,Options,canform,middle,snooping
 from speechdetect import listening,mounty
 from NotesDispensed import nota
 import threading
-from Distancedemo import over,vision,snoop
+from Distancedemo import over, snoop2,vision,snoop,snoop2
 
 def GUI():
     def  secret():
@@ -37,10 +36,11 @@ def GUI():
 
     def check_camera():
         #changes here
-        while pinpage.enabled:
+        if pinpage.enabled:
             if snoop():
-                print('inside snopdogg')
+               #  print('inside snopdogg')
                 pinpage.after(100,snooping)
+                snoop2()
                 #pinpage.destroy()
                 #startprog()
 
@@ -149,7 +149,7 @@ def GUI():
     txt5 = Text(pinpage, "Blind mode on", align="bottom", size=10)
     textbox1 = TextBox(pinpage, text="",command=check_pin)
 
-    pinpage.after(6000, check_camera)
+    pinpage.repeat(200, check_camera)
     # push1 = PushButton(pinpage, command=check_pin, text="Enter")
 
 

@@ -12,7 +12,7 @@ try:
 except:
     pass
 #cv2.startWindowThread()
-url = 'http://192.168.0.8:8080/video'
+url = 'http://192.168.207.152:8080/video'
 
 cap = cv2.VideoCapture(url)
 hog = cv2.HOGDescriptor()
@@ -75,3 +75,7 @@ def snoop():
 def over():
     global pinover
     pinover=True
+
+def snoop2():
+    global snopdogg
+    snopdogg = False
